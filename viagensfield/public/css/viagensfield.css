@@ -1,0 +1,208 @@
+/* Plugin Viagens Field - aba "Viagens" nos itens, formulário e painel.
+   Cores do tema do GLPI (variáveis tblr) com a paleta clara como reserva. */
+
+.viagensfield-aba,
+.viagensfield-painel,
+.viagensfield-card {
+    --vf-borda: var(--tblr-border-color, #dee2e6);
+    --vf-fundo: var(--tblr-bg-surface, #fff);
+    --vf-fundo-2: var(--tblr-bg-surface-secondary, #f8f9fa);
+    --vf-texto: var(--tblr-body-color, #333);
+    --vf-texto-2: var(--tblr-secondary, #6c757d);
+    --vf-primaria: var(--tblr-primary, #206bc4);
+    font-size: 12px;
+}
+
+/* ---------------------------------------------------------------- aba do item */
+.viagensfield-aba { display: flex; flex-direction: column; gap: 10px; }
+
+.viagensfield-resumo {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px 24px;
+    padding: 10px 15px; background: var(--vf-fundo-2);
+    border: 1px solid var(--vf-borda); border-radius: 4px;
+}
+.viagensfield-resumo-item { display: flex; flex-direction: column; gap: 2px; min-width: 90px; }
+.viagensfield-resumo-rotulo { font-size: 11px; color: var(--vf-texto-2); }
+.viagensfield-resumo-valor { font-size: 14px; font-weight: 600; color: var(--vf-texto); }
+.viagensfield-resumo-acoes { margin-left: auto; display: flex; flex-wrap: wrap; gap: 6px; }
+.viagensfield-negativo { color: #d63939 !important; }
+
+.viagensfield-nova { position: relative; }
+.viagensfield-nova > .card,
+.viagensfield-nova form { margin: 0; }
+.viagensfield-nova .tab_cadre_fixe { margin: 0 0 4px; }
+
+.viagensfield-dica { margin-top: 6px; font-size: 11px; color: var(--vf-texto-2); display: flex; align-items: center; gap: 6px; }
+
+.viagensfield-input-curto { max-width: 220px; }
+
+/* Comprovantes: miniaturas das fotos e cartões dos documentos */
+.viagensfield-comprovantes { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.viagensfield-comprovantes-lista { display: flex; flex-wrap: wrap; gap: 8px; }
+.viagensfield-comprovantes-lista:empty { display: none; }
+.viagensfield-comprovantes-botao { cursor: pointer; margin: 0; }
+.viagensfield-comprovante {
+    position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 4px;
+    width: 112px; padding: 6px; border: 1px solid var(--tblr-border-color, #dee2e6); border-radius: 4px;
+    background: var(--tblr-bg-surface, #fff); color: var(--tblr-body-color, #333); text-decoration: none; font-size: 11px;
+}
+a.viagensfield-comprovante:hover { border-color: var(--tblr-primary, #206bc4); text-decoration: none; }
+.viagensfield-comprovante img { width: 98px; height: 72px; object-fit: cover; border-radius: 3px; background: #f0f0f0; }
+.viagensfield-comprovante > i { font-size: 34px; height: 72px; display: flex; align-items: center; color: var(--tblr-secondary, #6c757d); }
+.viagensfield-comprovante span { width: 100%; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.viagensfield-progresso { width: 100%; height: 4px; border-radius: 2px; background: #e9ecef; overflow: hidden; }
+.viagensfield-progresso > div { width: 0; height: 100%; background: var(--tblr-primary, #206bc4); transition: width .2s ease; }
+.viagensfield-comprovante-pronto .viagensfield-progresso > div { background: #2fb344; }
+.viagensfield-comprovante-erro { border-color: rgba(220, 53, 69, 0.5); background: rgba(220, 53, 69, 0.05); }
+.viagensfield-comprovante-erro .viagensfield-progresso > div { background: #d63939; width: 100% !important; }
+.viagensfield-comprovante-remover {
+    position: absolute; top: 2px; right: 2px; width: 20px; height: 20px; padding: 0; border: 0; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.55); color: #fff; font-size: 12px; cursor: pointer;
+}
+.viagensfield-comprovante-remover:hover { background: rgba(214, 57, 57, 0.9); }
+
+/* Campos de data nativos: respiro entre o campo e os botões */
+.viagensfield-campo-data .flatpickr,
+.viagensfield-campo-data .input-group,
+.viagensfield-filtro-data .flatpickr,
+.viagensfield-filtro-data .input-group {
+    display: inline-flex; align-items: center; gap: 4px; flex-wrap: nowrap; width: auto;
+}
+.viagensfield-campo-data .flatpickr input.form-control,
+.viagensfield-filtro-data .flatpickr input.form-control { margin-right: 4px; }
+.viagensfield-campo-data .input-button,
+.viagensfield-filtro-data .input-button { margin-left: 4px; }
+
+.viagensfield-vazio {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 22px 10px; color: #999; font-size: 12px;
+}
+.viagensfield-vazio i { font-size: 20px; }
+
+/* ---------------------------------------------------------------- tabelas */
+.viagensfield-tabela-wrap,
+.viagensfield-card .table-responsive { border: 1px solid var(--vf-borda); border-radius: 4px; }
+.viagensfield-card .table-responsive { border-width: 0; border-radius: 0; }
+
+.viagensfield-tabela { margin: 0; font-size: 12px; }
+.viagensfield-tabela thead th {
+    position: sticky; top: 0; z-index: 2;
+    background: var(--vf-fundo-2); color: var(--vf-texto-2);
+    font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .02em;
+    padding: 8px 10px; border-bottom: 1px solid var(--vf-borda); white-space: nowrap;
+}
+.viagensfield-tabela tbody td { padding: 8px 10px; vertical-align: middle; color: var(--vf-texto); }
+.viagensfield-tabela tfoot td {
+    padding: 8px 10px; font-weight: 600; background: var(--vf-fundo-2); border-top: 1px solid var(--vf-borda);
+}
+.viagensfield-tabela a { font-weight: 500; }
+.viagensfield-tabela th[data-sort] { cursor: pointer; user-select: none; }
+.viagensfield-tabela th[data-sort]::after { content: ''; display: inline-block; width: 10px; margin-left: 4px; opacity: .45; }
+.viagensfield-tabela th.sorted-asc::after { content: '\25B2'; font-size: 8px; opacity: .8; }
+.viagensfield-tabela th.sorted-desc::after { content: '\25BC'; font-size: 8px; opacity: .8; }
+.viagensfield-linha-cancelada td { color: #999 !important; }
+
+.viagensfield-tabela mark.highlight { background: rgba(255, 193, 7, 0.35); padding: 0 1px; border-radius: 2px; color: inherit; }
+
+.viagensfield-trajeto { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 4px; }
+.viagensfield-trajeto i { color: #999; font-size: 12px; }
+
+.viagensfield-contador-doc { display: inline-flex; align-items: center; gap: 3px; }
+.viagensfield-docs { white-space: nowrap; }
+.viagensfield-docs a { display: inline-flex; margin: 0 2px; font-size: 15px; }
+
+.viagensfield-carregando { text-align: center; color: #999; padding: 18px !important; }
+.viagensfield-carregando i { margin-right: 6px; }
+
+/* Selos de status */
+.viagensfield-status {
+    display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px;
+    border-radius: 10px; white-space: nowrap; border: 1px solid transparent;
+}
+.viagensfield-status-efetuada { background: rgba(25, 135, 84, 0.08); color: #198754; border-color: rgba(25, 135, 84, 0.25); }
+.viagensfield-status-pendente { background: rgba(255, 193, 7, 0.12); color: #664d03; border-color: rgba(255, 193, 7, 0.35); }
+.viagensfield-status-cancelada { background: rgba(108, 117, 125, 0.1); color: #41464b; border-color: rgba(108, 117, 125, 0.3); }
+
+/* ---------------------------------------------------------------- painel */
+.viagensfield-painel { display: flex; flex-direction: column; gap: 12px; padding-bottom: 12px; }
+.viagensfield-abas .nav-link { font-size: 13px; }
+.viagensfield-abas .nav-link.active { font-weight: 600; border-bottom-color: transparent; }
+
+.viagensfield-filtros {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px;
+    padding: 10px 15px; background: var(--vf-fundo); border: 1px solid var(--vf-borda); border-radius: 4px;
+    position: relative; z-index: 5; overflow: visible;
+}
+.viagensfield-filtro { display: flex; align-items: center; gap: 8px; }
+.viagensfield-filtro > label { font-size: 12px; font-weight: 600; color: var(--vf-texto-2); margin: 0; white-space: nowrap; }
+.viagensfield-filtro-data input.form-control { width: 130px; }
+.viagensfield-filtro-acoes { display: flex; gap: 6px; margin-left: auto; }
+
+.viagensfield-kpis {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;
+}
+.viagensfield-kpi {
+    display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+    background: var(--vf-fundo); border: 1px solid var(--vf-borda); border-radius: 4px;
+}
+.viagensfield-kpi > i {
+    font-size: 18px; width: 34px; height: 34px; flex: 0 0 34px; border-radius: 4px;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--vf-primaria); background: rgba(13, 110, 253, 0.08);
+}
+.viagensfield-kpi > div { display: flex; flex-direction: column; min-width: 0; }
+.viagensfield-kpi-rotulo { font-size: 11px; color: var(--vf-texto-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.viagensfield-kpi-valor { font-size: 15px; font-weight: 600; color: var(--vf-texto); white-space: nowrap; }
+
+.viagensfield-card { border: 1px solid var(--vf-borda); border-radius: 4px; box-shadow: none; background: var(--vf-fundo); margin: 0; }
+.viagensfield-card > .card-header {
+    background: var(--vf-fundo-2); padding: 10px 15px; border-bottom: 1px solid var(--vf-borda); min-height: 0;
+}
+.viagensfield-card > .card-header h5 {
+    margin: 0; font-size: 14px; font-weight: 600; color: var(--vf-texto);
+    display: flex; align-items: center; gap: 8px;
+}
+.viagensfield-card > .card-header h5 i { color: var(--vf-texto-2); }
+.viagensfield-card > .card-body { padding: 12px 15px; }
+.viagensfield-card-topo { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 20px; }
+.viagensfield-contador { font-size: 11px; font-weight: 400; color: #999; }
+
+.viagensfield-ferramentas { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0; }
+.viagensfield-busca { width: 220px; max-width: 100%; }
+.viagensfield-por-pagina { width: auto; }
+
+.viagensfield-paginacao { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 4px; padding: 8px 12px; }
+.viagensfield-paginacao:empty { display: none; }
+.viagensfield-paginacao .btn { min-width: 30px; padding: 3px 8px; font-size: 11px; }
+.viagensfield-reticencias { color: #999; padding: 0 4px; }
+
+.viagensfield-graficos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.viagensfield-grafico { height: 290px; width: 100%; }
+@media (max-width: 991px) { .viagensfield-graficos { grid-template-columns: minmax(0, 1fr); } }
+
+/* Caixa */
+.viagensfield-caixa-grade { display: grid; grid-template-columns: minmax(260px, 340px) minmax(0, 1fr); gap: 12px; align-items: start; }
+@media (max-width: 991px) { .viagensfield-caixa-grade { grid-template-columns: minmax(0, 1fr); } }
+.viagensfield-form-caixa { display: flex; flex-direction: column; gap: 12px; }
+.viagensfield-form-caixa .viagensfield-cfg-campo { display: flex; flex-direction: column; gap: 6px; }
+.viagensfield-form-caixa label { font-size: 12px; font-weight: 600; color: var(--vf-texto-2); margin: 0; }
+.viagensfield-segmento { display: flex; gap: 0; }
+.viagensfield-segmento .btn { flex: 1; font-size: 12px; }
+.viagensfield-segmento .btn-check:checked + .btn { background: rgba(13, 110, 253, 0.08); color: var(--vf-primaria); border-color: var(--vf-primaria); font-weight: 600; }
+.viagensfield-form-rodape { display: flex; justify-content: flex-end; }
+.viagensfield-extrato { max-height: 560px; overflow-y: auto; }
+
+.viagensfield-tipo { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
+.viagensfield-tipo-entrada { background: rgba(25, 135, 84, 0.08); color: #198754; }
+.viagensfield-tipo-estorno { background: rgba(13, 202, 240, 0.1); color: #055160; }
+.viagensfield-tipo-retirada { background: rgba(108, 117, 125, 0.1); color: #41464b; }
+.viagensfield-tipo-despesa { background: rgba(220, 53, 69, 0.08); color: #b02a37; }
+.viagensfield-credito { color: #198754; font-weight: 600; }
+.viagensfield-debito { color: #b02a37; font-weight: 600; }
+
+.viagensfield-alerta { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 4px; font-size: 12px; border: 1px solid transparent; }
+.viagensfield-alerta[hidden] { display: none; }
+.viagensfield-alerta-aviso { background: rgba(255, 193, 7, 0.1); border-color: rgba(255, 193, 7, 0.3); color: #664d03; }
+
+.viagensfield-btn-salvar { background: #e5a54b; border-color: #e5a54b; color: #fff; }
+.viagensfield-btn-salvar:hover, .viagensfield-btn-salvar:focus { background: #d9973b; border-color: #d9973b; color: #fff; }
